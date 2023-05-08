@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block first %}
+
+<div class="bbbootstrap">
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+            <input class="form-control mr-sm-2" type="search"   placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+      {% for i in data %}
+        {% if forloop.counter0|divisibleby:3 %}
+          <div class="row">
+        {% endif %}
+        <div class="card" style="width: 18rem; margin:40px;">
+          <img src="/media/{{i.shop_image}}" height="200" style="object-fit:cover;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.shop_name | default:""}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Review</a>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+
+{% endblock first %}

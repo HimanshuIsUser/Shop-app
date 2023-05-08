@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+  {% block first %}
+    <div class="container">
+      {% for i in data %}
+        {% if forloop.counter0|divisibleby:3 %}
+          <div class="row">
+        {% endif %}
+        <div class="card" style="width: 18rem; margin:40px;">
+          <img src="/media/{{i.shop_image}}" height="200" style="object-fit:cover;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.shop_name | default:""}}</h5>
+            <p class="card-text">{{i.address}} , {{i.pincode}}</p>
+            <a href="/review/{{i.id}}/" class="btn btn-primary">Review</a>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endblock first %}
+  </body>
+</html>
